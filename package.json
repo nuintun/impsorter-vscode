@@ -3,7 +3,7 @@
   "displayName": "impsorter - Arrange imports",
   "description": " Help you sort your import statements",
   "version": "1.2.1",
-  "publisher": "erhise",
+  "publisher": "nuintun",
   "license": "MIT",
   "categories": [
     "Formatters",
@@ -88,9 +88,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/erhise/impsorter.git"
+    "url": "https://github.com/nuintun/impsorter.git"
   },
   "bugs": {
-    "url": "https://github.com/erhise/impsorter/issues"
+    "url": "https://github.com/nuintun/impsorter/issues"
   }
 }
