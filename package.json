@@ -1,6 +1,6 @@
 {
   "name": "impsorter",
-  "displayName": "impsorter - Arrange imports",
+  "displayName": "impsorter - imports sorter",
   "description": " Help you sort your import statements",
   "version": "1.2.1",
   "publisher": "nuintun",
