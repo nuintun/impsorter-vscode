@@ -104,6 +104,6 @@ dist
 .tern-port
 
 # VSCode extension
-out
+out/
 *.vsix
 .vscode-test/
