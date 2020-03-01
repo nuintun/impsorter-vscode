@@ -140,7 +140,7 @@ function formatLine(arr: string[], perRow: number, tabWidth: number, trailingCom
   for (let i = 0; i < arr.length; i++) {
     const newRow = i % perRow;
 
-    if (newRow === 0) {
+    if (!newRow) {
       res += `\n${' '.repeat(tabWidth)}`;
     }
 
