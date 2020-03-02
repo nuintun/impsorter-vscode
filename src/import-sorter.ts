@@ -92,7 +92,7 @@ function isImportStatement(selection: string): boolean {
 function sortImportSelection(selection: string, format: SortConfig, options: Options): string {
   return selection
     .replace(/[ ]+/gm, ' ')
-    .replace(/[\r\n]/gm, '')
+    .replace(/[\r\n](?!\s*(import|export))/gm, '')
     .replace(/\{[^.]*?\}/gm, exp => {
       const match = /\{(.*?)\}/gm.exec(exp);
 

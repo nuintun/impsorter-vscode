@@ -2,6 +2,7 @@
 
 ## 1.2.2 (2020-03-02)
 
+- Add editor context menu
 - Support `export` imports
 - Fixed bug with keyword `as`
 
