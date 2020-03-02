@@ -24,10 +24,10 @@ These are acessible via the command menu `(<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd
 Open up _settings.json_ and change default settings
 
 ```
-impsorter.defaultTabWidth: 4
+impsorter.defaultTabWidth: 2
 impsorter.trailingComma: false
-impsorter.inputPerLine: 4
-impsorter.lineMaxWidth: 80
+impsorter.inputPerLine: 2
+impsorter.lineMaxWidth: 128
 ```
 
 ### Sort imports on one line selection
@@ -42,4 +42,6 @@ impsorter.lineMaxWidth: 80
 
 - Latest changes are referenced in the changelog.
 
-## Modify from [erhise/impsorter](https://github.com/erhise/impsorter)
+## See [erhise/impsorter](https://github.com/erhise/impsorter)
+
+- Thanks [erhise](https://github.com/erhise)
