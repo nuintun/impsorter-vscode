@@ -1,21 +1,21 @@
 {
-  "name": "impsorter",
-  "displayName": "impsorter - imports sorter",
+  "name": "impsorter-vscode",
+  "displayName": "Impsorter - Sort Imports",
   "description": " Help you sort your import statements",
   "version": "1.2.2",
   "publisher": "nuintun",
   "license": "MIT",
   "categories": [
-    "Formatters",
-    "Other"
+    "Other",
+    "Formatters"
   ],
   "icon": "assets/vs-impsorter-logo.png",
   "keywords": [
-    "sort imports",
-    "order imports",
     "sort",
     "order",
-    "selection"
+    "selection",
+    "sort imports",
+    "order imports"
   ],
   "activationEvents": [
     "onCommand:extension.sortImportLine",
@@ -34,18 +34,42 @@
         "title": "Sort Imports: Line import"
       },
       {
+        "command": "extension.sortImportLinesOnMaxCharWidth",
+        "title": "Sort Imports: Limit on max width"
+      },
+      {
         "command": "extension.sortImportsPerLine",
         "title": "Sort Imports: One import per line"
       },
       {
         "command": "extension.sortImportLinesOnWordGrouping",
         "title": "Sort Imports: Maximum inputs per line"
-      },
-      {
-        "command": "extension.sortImportLinesOnMaxCharWidth",
-        "title": "Sort Imports: Limit on max width"
       }
     ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorFocus",
+          "command": "extension.sortImportLine",
+          "group": "modification@1"
+        },
+        {
+          "when": "editorHasSelection",
+          "command": "extension.sortImportLinesOnMaxCharWidth",
+          "group": "modification@2"
+        },
+        {
+          "when": "editorHasSelection",
+          "command": "extension.sortImportsPerLine",
+          "group": "modification@3"
+        },
+        {
+          "when": "editorHasSelection",
+          "command": "extension.sortImportLinesOnWordGrouping",
+          "group": "modification@4"
+        }
+      ]
+    },
     "configuration": {
       "type": "object",
       "title": "impsorter configuration",
