@@ -91,8 +91,8 @@ function isImportStatement(selection: string): boolean {
 
 function sortImportSelection(selection: string, format: SortConfig, options: Options): string {
   return selection
-    .trim()
-    .replace(/(\s)+/gm, '$1')
+    .replace(/[ ]+/gm, ' ')
+    .replace(/[\r\n]/gm, '')
     .replace(/\{[^.]*?\}/gm, exp => {
       const match = /\{(.*?)\}/gm.exec(exp);
 
@@ -116,7 +116,7 @@ function formatArray(arr: string[], format: SortConfig, options: Options): strin
 
   switch (format) {
     case SortConfig.SingleLine:
-      formattedArray = arr.map((entry, index) => (index !== 0 ? ` ${entry}` : entry));
+      formattedArray = arr.map((entry, index) => (index > 0 ? ` ${entry}` : entry));
 
       return `{ ${formattedArray} }`;
     case SortConfig.MultiLine:
@@ -136,8 +136,10 @@ function formatArray(arr: string[], format: SortConfig, options: Options): strin
 
 function formatLine(arr: string[], perRow: number, tabWidth: number, trailingComma: boolean) {
   let res: string = '';
+  const arrLen = arr.length;
+  const lastIndex = arrLen - 1;
 
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arrLen; i++) {
     const newRow = i % perRow;
 
     if (!newRow) {
@@ -146,11 +148,11 @@ function formatLine(arr: string[], perRow: number, tabWidth: number, trailingCom
 
     res += arr[i];
 
-    if (i !== arr.length - 1) {
+    if (i !== lastIndex) {
       res += ', ';
     }
 
-    if (i === arr.length - 1 && trailingComma) {
+    if (i === lastIndex && trailingComma) {
       res += ',';
     }
   }
@@ -160,9 +162,11 @@ function formatLine(arr: string[], perRow: number, tabWidth: number, trailingCom
 
 function formatLineWidth(arr: string[], maxWidth: number, tabWidth: number, trailingComma: boolean) {
   let lineWidth = tabWidth;
+  const arrLen = arr.length;
+  const lastIndex = arrLen - 1;
   let res: string = ' '.repeat(tabWidth);
 
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arrLen; i++) {
     const currentLength = arr[i].length;
 
     if (i > 0 && lineWidth + currentLength > maxWidth) {
@@ -172,11 +176,11 @@ function formatLineWidth(arr: string[], maxWidth: number, tabWidth: number, trai
 
     res += arr[i];
 
-    if (i !== arr.length - 1) {
+    if (i !== lastIndex) {
       res += ', ';
     }
 
-    if (i === arr.length - 1 && trailingComma) {
+    if (i === lastIndex && trailingComma) {
       res += ',';
     }
 

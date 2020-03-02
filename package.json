@@ -62,7 +62,7 @@
         },
         "impsorter.inputPerLine": {
           "type": "number",
-          "default": 1,
+          "default": 2,
           "description": "Specifies number of inputs per line when command sortImportLinesOnWordGrouping is used"
         },
         "impsorter.lineMaxWidth": {
