@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.2.2 (2020-03-02)
+
+- Support `export` imports
+- Fixed bug with keyword `as`
+
 ## 1.2.1 (2018-12-22)
 
 - Add sort imports one per line
