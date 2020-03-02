@@ -1,4 +1,4 @@
-# impsorter
+# impsorter-vscode
 
 You might think the structure of your imports are important (_no pun intended_).
 
@@ -32,11 +32,11 @@ impsorter.lineMaxWidth: 128
 
 ### Sort imports on one line selection
 
-![sortLine](https://raw.githubusercontent.com/nuintun/impsorter/master/assets/vs-impsorter-sortLine.gif)
+![sortLine](https://raw.githubusercontent.com/nuintun/impsorter-vscode/master/assets/vs-impsorter-sortLine.gif)
 
 ### Sort imports on regard of maximum line width
 
-![sortLines](https://raw.githubusercontent.com/nuintun/impsorter/master/assets/vs-importer-sortLinesWidth.gif)
+![sortLines](https://raw.githubusercontent.com/nuintun/impsorter-vscode/master/assets/vs-importer-sortLinesWidth.gif)
 
 ## Release Notes
 

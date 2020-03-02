@@ -112,9 +112,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nuintun/impsorter.git"
+    "url": "https://github.com/nuintun/impsorter-vscode.git"
   },
   "bugs": {
-    "url": "https://github.com/nuintun/impsorter/issues"
+    "url": "https://github.com/nuintun/impsorter-vscode/issues"
   }
 }
