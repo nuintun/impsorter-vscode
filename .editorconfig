@@ -1,13 +1,14 @@
 # http://editorconfig.org
 root = true
 
+# All files
 [*]
-indent_style = space
+charset = utf-8
 indent_size = 2
 end_of_line = lf
-charset = utf-8
-trim_trailing_whitespace = true
+indent_style = space
 insert_final_newline = true
+trim_trailing_whitespace = true
 
 # Use 4 spaces for the Python files
 [*.py]
@@ -16,20 +17,29 @@ max_line_length = 80
 
 # The JSON files contain newlines inconsistently
 [*.json]
-insert_final_newline = ignore
+insert_final_newline = false
 
 # Minified JavaScript files shouldn't be changed
 [*.min.js]
-indent_style = ignore
-insert_final_newline = ignore
+insert_final_newline = false
 
 # Makefiles always use tabs for indentation
 [Makefile]
 indent_style = tab
 
+# The svg files contain newlines inconsistently
+[*.svg]
+insert_final_newline = false
+
 # Batch files use tabs for indentation
 [*.bat]
 indent_style = tab
 
+# Markdown files
 [*.md]
 trim_trailing_whitespace = false
+
+# C# files
+[*.{cs,cshtml}]
+indent_size = 4
+charset = utf-8-bom
