@@ -86,7 +86,7 @@ export class ImportSorter {
   }
 }
 
-const MODULE_RE: RegExp = /(^|\s*?)(?:import|export)\s+?(?:(?:(?:[\w*\s{},]*)\s+from\s+?)|)(?:(?:".*?")|(?:'.*?'))[\s]*?(?:;|$|)/gm;
+const MODULE_RE: RegExp = /(?:import|export)\s+?(?:(?:(?:[\w*\s{},]*)\s+from\s+?)|)(?:(?:".*?")|(?:'.*?'))[\s]*?(?:;|$|)/gm;
 
 function isImportStatement(selection: string): boolean {
   return MODULE_RE.test(selection);
@@ -94,19 +94,16 @@ function isImportStatement(selection: string): boolean {
 
 function sortImportSelection(selection: string, format: SortConfig, options: Options): string {
   return selection.replace(MODULE_RE, match =>
-    match
-      .replace(/[ ]+/gm, ' ')
-      .replace(/[\r\n](?!\s*(import|export))/gm, '')
-      .replace(/\{[^.]*?\}/gm, words => {
-        const match: RegExpExecArray | null = /\{(.*?)\}/gm.exec(words);
+    match.replace(/[ ]+/gm, ' ').replace(/\{[^.]*?\}/gm, words => {
+      const match: RegExpExecArray | null = /\{(.*?)\}/gm.exec(words);
 
-        if (!match || !match[1]) return words;
+      if (!match || !match[1]) return words;
 
-        const arrayToSort: string[] = match[1].split(',').filter(n => n);
-        const sortedArray: string[] = sortArray(arrayToSort.map(n => n.trim()));
+      const arrayToSort: string[] = match[1].split(',').filter(n => n);
+      const sortedArray: string[] = sortArray(arrayToSort.map(n => n.trim()));
 
-        return formatArray(sortedArray, format, options);
-      })
+      return formatArray(sortedArray, format, options);
+    })
   );
 }
 
