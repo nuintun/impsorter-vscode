@@ -1,13 +1,17 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "lib": ["es6"],
+    "pretty": true,
+    "rootDir": ".",
     "target": "es6",
     "outDir": "out",
-    "lib": ["es6"],
+    "newLine": "LF",
     "sourceMap": true,
-    "rootDir": ".",
-    "strict": true,
-    "noUnusedLocals": true
+    "module": "commonjs",
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "forceConsistentCasingInFileNames": true
   },
   "exclude": ["node_modules", ".vscode-test"]
 }
