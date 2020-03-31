@@ -1,4 +1,4 @@
-import { Range, Selection, TextEditor, window, WorkspaceConfiguration } from 'vscode';
+import { Range, Selection, TextEditor, TextLine, window, WorkspaceConfiguration } from 'vscode';
 
 enum SortConfig {
   SingleLine,
@@ -15,10 +15,10 @@ interface Options {
 }
 
 export class ImportSorter {
-  private defaultTabWidth = this.config.defaultTabWidth;
-  private trailingComma = this.config.trailingComma;
-  private inputPerLine = this.config.inputPerLine;
-  private lineMaxWidth = this.config.lineMaxWidth;
+  private defaultTabWidth: number = this.config.defaultTabWidth;
+  private trailingComma: boolean = this.config.trailingComma;
+  private inputPerLine: number = this.config.inputPerLine;
+  private lineMaxWidth: number = this.config.lineMaxWidth;
 
   constructor(private config: WorkspaceConfiguration) {}
 
@@ -43,16 +43,17 @@ export class ImportSorter {
 
   // TODO: break up to not handle messaging
   private handleSorting(format: SortConfig): void {
-    const activeEditor = this.checkEditorAndSelection(window.activeTextEditor, (error: string) =>
-      window.showErrorMessage(error)
+    const activeEditor: void | [TextEditor, Selection] = this.checkEditorAndSelection(
+      window.activeTextEditor,
+      (error: string) => window.showErrorMessage(error)
     );
 
     if (activeEditor) {
-      const [editor, selection] = activeEditor;
-      const selectionEndLine = editor.document.lineAt(selection.end.line);
+      const [editor, selection]: [TextEditor, Selection] = activeEditor;
+      const selectionEndLine: TextLine = editor.document.lineAt(selection.end.line);
 
-      const range = new Range(selection.start.line, 0, selection.end.line, selectionEndLine.range.end.character);
-      const input = editor.document.getText(range);
+      const range: Range = new Range(selection.start.line, 0, selection.end.line, selectionEndLine.range.end.character);
+      const input: string = editor.document.getText(range);
 
       if (isImportStatement(input)) {
         const config: Options = {
@@ -61,7 +62,7 @@ export class ImportSorter {
           inputPerLine: this.inputPerLine,
           lineMaxWidth: this.lineMaxWidth
         };
-        const sortedImport = sortImportSelection(input, format, config);
+        const sortedImport: string = sortImportSelection(input, format, config);
 
         editor.edit(builder => builder.replace(range, sortedImport));
         window.showInformationMessage(`${selection.end.line - selection.start.line + 1} number of lines got sorted.`);
@@ -93,13 +94,13 @@ function sortImportSelection(selection: string, format: SortConfig, options: Opt
   return selection
     .replace(/[ ]+/gm, ' ')
     .replace(/[\r\n](?!\s*(import|export))/gm, '')
-    .replace(/\{[^.]*?\}/gm, exp => {
-      const match = /\{(.*?)\}/gm.exec(exp);
+    .replace(/\{[^.]*?\}/gm, words => {
+      const match: RegExpExecArray | null = /\{(.*?)\}/gm.exec(words);
 
-      if (!match || !match[1]) return exp;
+      if (!match || !match[1]) return words;
 
-      const arrayToSort = match[1].split(',').filter(n => n);
-      const sortedArray = sortArray(arrayToSort.map(n => n.trim()));
+      const arrayToSort: string[] = match[1].split(',').filter(n => n);
+      const sortedArray: string[] = sortArray(arrayToSort.map(n => n.trim()));
 
       return formatArray(sortedArray, format, options);
     });
@@ -110,9 +111,9 @@ function sortArray(arr: string[]): string[] {
 }
 
 function formatArray(arr: string[], format: SortConfig, options: Options): string {
-  const { tabWidth, trailingComma, inputPerLine, lineMaxWidth } = options;
+  const { tabWidth, trailingComma, inputPerLine, lineMaxWidth }: Options = options;
 
-  let formattedArray;
+  let formattedArray: string[];
 
   switch (format) {
     case SortConfig.SingleLine:
@@ -136,11 +137,12 @@ function formatArray(arr: string[], format: SortConfig, options: Options): strin
 
 function formatLine(arr: string[], perRow: number, tabWidth: number, trailingComma: boolean) {
   let res: string = '';
-  const arrLen = arr.length;
-  const lastIndex = arrLen - 1;
 
-  for (let i = 0; i < arrLen; i++) {
-    const newRow = i % perRow;
+  const arrLen: number = arr.length;
+  const lastIndex: number = arrLen - 1;
+
+  for (let i: number = 0; i < arrLen; i++) {
+    const newRow: number = i % perRow;
 
     if (!newRow) {
       res += `\n${' '.repeat(tabWidth)}`;
@@ -161,13 +163,14 @@ function formatLine(arr: string[], perRow: number, tabWidth: number, trailingCom
 }
 
 function formatLineWidth(arr: string[], maxWidth: number, tabWidth: number, trailingComma: boolean) {
-  let lineWidth = tabWidth;
-  const arrLen = arr.length;
-  const lastIndex = arrLen - 1;
+  let lineWidth: number = tabWidth;
   let res: string = ' '.repeat(tabWidth);
 
-  for (let i = 0; i < arrLen; i++) {
-    const currentLength = arr[i].length;
+  const arrLen: number = arr.length;
+  const lastIndex: number = arrLen - 1;
+
+  for (let i: number = 0; i < arrLen; i++) {
+    const currentLength: number = arr[i].length;
 
     if (i > 0 && lineWidth + currentLength > maxWidth) {
       lineWidth = tabWidth;
