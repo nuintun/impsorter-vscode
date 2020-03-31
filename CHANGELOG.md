@@ -1,6 +1,6 @@
 # Change Log
 
-## 1.2.2 (2020-03-02)
+## 1.2.3 (2020-03-31)
 
 - Fixed regexp backtracking to improve performance
 
